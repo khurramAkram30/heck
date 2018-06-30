@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<body onload="getPost()">
+    
+    <input type="text" id="search">
+    <input type="submit" onclick="search()">
+    
+    <img src="" alt="">
+    <table class="table" >
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>category</th>
+                <th>title</th>
+                <th>description</th>
+                <th>image</th>
+
+            </tr>
+        </thead>
+
+        <tbody id="display" >
+
+        </tbody>
+
+    </table>
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <!-- script for firebase authentication -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+    <!-- script for firebase authentication -->
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBl64K7rmzJQ1pMIgJYSkHLvtjiJD0au7c",
+            authDomain: "saylani-heckatone.firebaseapp.com",
+            databaseURL: "https://saylani-heckatone.firebaseio.com",
+            projectId: "saylani-heckatone",
+            storageBucket: "saylani-heckatone.appspot.com",
+            messagingSenderId: "267286052453"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="app.js"></script>
+
+
+</body>
+
+</html>

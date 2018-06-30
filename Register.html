@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Heckatone</title>
+</head>
+<body>
+    
+
+<form id="regform">
+    <label for="username">Username</label>
+    <Input type="text" id="username" />
+
+    <label for="username">Email</label>
+    <Input type="text" id="Email" />
+
+    <label for="username">Password</label>
+    <Input type="password" id="Pwd" />
+
+    <input type="submit" value="Signup" onclick="signup()">
+
+</form>
+
+
+
+    
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+<!-- script for firebase authentication -->
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+ <!-- script for firebase authentication -->
+
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBl64K7rmzJQ1pMIgJYSkHLvtjiJD0au7c",
+    authDomain: "saylani-heckatone.firebaseapp.com",
+    databaseURL: "https://saylani-heckatone.firebaseio.com",
+    projectId: "saylani-heckatone",
+    storageBucket: "saylani-heckatone.appspot.com",
+    messagingSenderId: "267286052453"
+  };
+  firebase.initializeApp(config);
+</script>
+    <script src="app.js"></script>
+</body>
+</html>
