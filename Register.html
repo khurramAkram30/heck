@@ -5,22 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Heckatone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-    
+    <!--Development Area: Masstraining4321 -->
 
 <form id="regform">
-    <label for="username">Username</label>
-    <Input type="text" id="username" />
-
-    <label for="username">Email</label>
-    <Input type="text" id="Email" />
-
-    <label for="username">Password</label>
-    <Input type="password" id="Pwd" />
-
-    <input type="submit" value="Signup" onclick="signup()">
-
+    <div class="container">
+            <h1>Sign Up</h1>
+            <p>Please fill in this form to create an account.</p>
+            <hr>
+            <label for="email"><b>UserName</b></label>
+            <input type="text" placeholder="Enter Username" name="email" id="username" required>
+      
+            <label for="psw"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" id="Email" name="psw" required>
+      
+            <label for="psw-repeat"><b>Password</b></label>
+            <input type="password" placeholder="Password" id="Pwd" name="psw-repeat" required>
+            
+            <div class="clearfix">
+              <!-- <button type="submit" class="signupbtn">Sign Up</button> -->
+              <button type="submit" class="signupbtn" onclick="signup()">Signup</button>
+            </div>
+          </div>
+      
 </form>
 
 
@@ -46,6 +56,6 @@
   };
   firebase.initializeApp(config);
 </script>
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

@@ -10,10 +10,11 @@ function signup() {
         var email = document.getElementById("Email").value;
         var password = document.getElementById("Pwd").value;
 
+if(name > 0 && email >0 && password >0){
 
-        auth.createUserWithEmailAndPassword(email, password)
-            .then((res) => {
-                alert("Registration Successful");
+    auth.createUserWithEmailAndPassword(email, password)
+    .then((res) => {
+        alert("Registration Successful");
                 console.log("res=>", res.user.uid);
                 db.collection("users").doc(res.user.uid).set({ name, email })
                     .then(() => {
@@ -22,11 +23,15 @@ function signup() {
                     }).catch((e) => {
                         console.error("error in db");
                     })
-            }).catch((error) => {
-                var errCode = error.code;
-                var errMessage = error.message;
-                console.log(errMessage);
-            })
+                }).catch((error) => {
+                    var errCode = error.code;
+                    var errMessage = error.message;
+                    console.log(errMessage);
+                })
+            }
+            else{
+                alert("pkz fill all the field");
+            }
     }))
 }
 
@@ -70,7 +75,8 @@ function AddCat() {
 function getCategories() {
 
     var cat = document.getElementById("category");
-
+    
+    
     db.collection("categories").get()
         .then((query) => {
             query.forEach((doc) => {
@@ -80,11 +86,25 @@ function getCategories() {
                 cretaeOption.innerHTML = doc.data().categories;
                 cat.appendChild(cretaeOption);
 
+                
             })
 
         })
 
 }
+
+
+
+
+
+////
+
+/////
+
+
+
+
+
 
 
 
@@ -96,65 +116,56 @@ function AddPost() {
 
         var e = document.getElementById("category");
         var category = e.options[e.selectedIndex].value;
-        
+        var year=document.getElementById("Year").value;
         var title = document.getElementById("title").value;
         var desc=document.getElementById("descript").value;
-        var img=document.getElementById("img").value;
-        console.log(name,category,title,desc,img);
+        var pic=document.getElementById("img");
+        // console.log(name,category,title,desc,img);
 
-        db.collection("AdPost").add({name,category,title,desc,img})
-        .then((res)=>{
-            console.log(res);
-            window.location="home.html";
-        })
-        .catch((error)=>{
-            var errMessage = error.message;
-            console.log(errMessage);
-       
-        })
-
-    }))
+    
+var file = pic.files[0];
+var reader = new FileReader();
+reader.onloadend = function() {
+var img = reader.result;
+console.log(img);
+db.collection("AdPost").add({name,category,desc,title,year,img})
+.then((res)=>{
+    console.log(res);
+      window.location="home.html";
+  })
+  .catch((error)=>{
+      var errMessage = error.message;
+      console.log(errMessage);
+  })
+}
+reader.readAsDataURL(file);
+   }))
 }
 
 
 
+
 function getPost(){
-    var table=document.getElementById("display");
+var image=document.getElementById("fetch");
+    //  var table=document.getElementById("display");
     db.collection("AdPost").get()
     .then((query)=>{
         query.forEach(((doc)=>{
-            console.log(doc.data());
-            var tr=document.createElement("tr");
-            var name=document.createElement("td");
-            
-            var category=document.createElement("td");
-            
-            var description=document.createElement("td");
-            
-            var title=document.createElement("td");
-            
-            var img=document.createElement("td");
 
-            name.innerHTML=doc.data().name;
-            
-            category.innerHTML=doc.data().category;
-            
-            description.innerHTML=doc.data().desc;
-            
-            title.innerHTML=doc.data().title;
-            
-            img.innerHTML=`<img src="${doc.data().img}">`;
+            image.innerHTML +=`
+            <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="${doc.data().img}" style="width:100%" class="img-responsive" alt="${doc.data().name}">
+                <div class="caption">
+                  <p>${doc.data().name}</p>
+                </div>
+              
+            </div>
+          </div>
+         
 
-
-
-            tr.appendChild(name);
-            
-            tr.appendChild(category);
-            tr.appendChild(description);
-            tr.appendChild(title);
-            tr.appendChild(img);
-
-            table.appendChild(tr);
+            `;
+           
         }))
     })
 }
@@ -164,45 +175,37 @@ function getPost(){
 
 function search(){
     
-    var table=document.getElementById("display");
-    var search=document.getElementById("search").value;
-    console.log(search);
-    db.collection("AdPost").where("name", "==", search).get().then((querySnapshot) => {
+    var image=document.getElementById("fetch");
+//    var search=document.getElementById("search").value;
+var e = document.getElementById("category");
+var category = e.options[e.selectedIndex].value;
+
+console.log(search);
+    db.collection("AdPost").where("category", "==", category).get().then((querySnapshot) => {
+        image.innerHTML=""; 
     querySnapshot.forEach((doc) => {
-        table.innerHTML="";
-        console.log(doc.data());
-        var tr=document.createElement("tr");
-        var name=document.createElement("td");
-        
-        var category=document.createElement("td");
-        
-        var description=document.createElement("td");
-        
-        var title=document.createElement("td");
-        
-        var img=document.createElement("td");
 
-        name.innerHTML=doc.data().name;
-        
-        category.innerHTML=doc.data().category;
-        
-        description.innerHTML=doc.data().desc;
-        
-        title.innerHTML=doc.data().title;
-        
-        img.innerHTML=`<img src="${doc.data().img}">`;
+        image.innerHTML +=`
+        <div class="col-md-4">
+        <div class="thumbnail">
+            <img src="${doc.data().img}" alt="${doc.data().name}">
+            <div class="caption">
+              <p>${doc.data().name}</p>
+            </div>
+          
+        </div>
+      </div>
+     
 
-
-
-        tr.appendChild(name);
-        
-        tr.appendChild(category);
-        tr.appendChild(description);
-        tr.appendChild(title);
-        tr.appendChild(img);
-
-        table.appendChild(tr);
+        `;
 
     });
 });
+}
+
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('../service-worker.js')
+             .then(function() { console.log('Service Worker Registered'); });
 }

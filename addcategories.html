@@ -5,15 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 <body>
-    
+        <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="#">OLX WEBAPP</a>
+                  </div>
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="home.html">Home</a></li>
+                    <li><a href="Addpost.html">ADD Post</a></li>
+                    <li><a href="addcategories.html">ADD Category</a></li>
+                    
+                  </ul>
+                </div>
+              </nav>
     
     <form action="" id="catForm">
-        <label for="Categories">Category Name:</label>
+        <!-- <label for="Categories">Category Name:</label>
         <input type="text" id="cat">
 
-        <input type="button" value="Add Categories" onclick="AddCat()">
+        <input type="button" value="Add Categories" onclick="AddCat()"> -->
+   
+                <div class="container">
+                    <h1>Add Categories</h1>
+                    <hr>
+              
+                    <label for="psw"><b>Category</b></label>
+                    <input type="text" placeholder="Enter Category" id="cat" name="psw" required>
+              
+                    
+                    <div class="clearfix">
+                      <!-- <button type="submit" class="signupbtn">Sign Up</button> -->
+                      <button type="submit" class="signupbtn" onclick="AddCat()">Add Categories</button>
+                    </div>
+                  </div>
+              
+              </form>
+              
+
+
 
     </form>
     
@@ -41,7 +75,7 @@
   };
   firebase.initializeApp(config);
 </script>
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 </html>

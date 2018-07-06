@@ -5,19 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Heckatone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 <body>
     
 <form action="" id="loginForm">
-  <label for="Email">Email</label>
+  <!-- <label for="Email">Email</label>
   <input type="text" id="Email"/>
 <label for="Password">Password</label>
   <input type="password" id="Pwd"/>
   
-  <input type="submit" value="Signin" onclick="signin()">
+  <input type="submit" value="Signin" onclick="signin()"> -->
 
-</form>
+  <div class="container">
+      <h1>Sign In</h1>
+      <hr>
 
+      <label for="psw"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" id="Email" name="psw" required>
+
+      <label for="psw-repeat"><b>Password</b></label>
+      <input type="password" placeholder="Password" id="Pwd" name="psw-repeat" required>
+      
+      <div class="clearfix">
+        <!-- <button type="submit" class="signupbtn">Sign Up</button> -->
+        <button type="submit" class="signupbtn" onclick="signin()">SignIn</button>
+      </div>
+    </div>
+
+    <p style="margin-left: 100px;"> Need An Account?<a href="register.html">Signup Here:</a>
+    </p>
+    </form>
 
 
 
@@ -42,6 +62,6 @@
   };
   firebase.initializeApp(config);
 </script>
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
